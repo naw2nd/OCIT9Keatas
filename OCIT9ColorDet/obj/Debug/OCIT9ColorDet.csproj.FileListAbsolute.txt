@@ -1,9 +1,0 @@
-c:\users\nawa\documents\visual studio 2015\Projects\OCIT9ColorDet\OCIT9ColorDet\bin\Debug\OCIT9ColorDet.exe.config
-c:\users\nawa\documents\visual studio 2015\Projects\OCIT9ColorDet\OCIT9ColorDet\bin\Debug\OCIT9ColorDet.exe
-c:\users\nawa\documents\visual studio 2015\Projects\OCIT9ColorDet\OCIT9ColorDet\bin\Debug\OCIT9ColorDet.pdb
-c:\users\nawa\documents\visual studio 2015\Projects\OCIT9ColorDet\OCIT9ColorDet\obj\Debug\OCIT9ColorDet.csprojResolveAssemblyReference.cache
-c:\users\nawa\documents\visual studio 2015\Projects\OCIT9ColorDet\OCIT9ColorDet\obj\Debug\OCIT9ColorDet.Form1.resources
-c:\users\nawa\documents\visual studio 2015\Projects\OCIT9ColorDet\OCIT9ColorDet\obj\Debug\OCIT9ColorDet.Properties.Resources.resources
-c:\users\nawa\documents\visual studio 2015\Projects\OCIT9ColorDet\OCIT9ColorDet\obj\Debug\OCIT9ColorDet.csproj.GenerateResource.Cache
-c:\users\nawa\documents\visual studio 2015\Projects\OCIT9ColorDet\OCIT9ColorDet\obj\Debug\OCIT9ColorDet.exe
-c:\users\nawa\documents\visual studio 2015\Projects\OCIT9ColorDet\OCIT9ColorDet\obj\Debug\OCIT9ColorDet.pdb
