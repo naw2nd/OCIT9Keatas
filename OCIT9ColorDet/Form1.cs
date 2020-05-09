@@ -19,6 +19,14 @@ namespace OCIT9ColorDet
         float[][] h = new float[4][];
         int[,] mat1 = new int[1000, 1000];
         int[,] mat2 = new int[1000, 1000];
+        int[] konxX1 = new int[1000];
+        int[] konxY1 = new int[1000];
+        int[] iiX1 = new int[1000];
+        int[] iiY1 = new int[1000];
+        int[] konxX2 = new int[1000];
+        int[] konxY2 = new int[1000];
+        int[] iiX2 = new int[1000];
+        int[] iiY2 = new int[1000];
         int row = 0, col = 0;
         public Form1()
         {
@@ -308,7 +316,7 @@ namespace OCIT9ColorDet
             dataGridView1.Rows.Add(objBitmap1.Height);
             for (int i = 0; i < objBitmap1.Height; i++) {
                 for (int j = 0; j < objBitmap1.Width; j++) {
-                    dataGridView1.Rows[i].Cells[j].Value = mat1[j, i].ToString();
+                    dataGridView1.Rows[i].Cells[j].Value = mat1[i, j].ToString();
                 }
             }
         }
@@ -414,107 +422,102 @@ namespace OCIT9ColorDet
 
         private void button20_Click(object sender, EventArgs e)
         {
-            int[] konx = new int[1000];
-            int[] ii = new int[1000];
             var seriesx = new Series("Proyeksi-X Gambar1");
 
             for (int i = 0; i < objBitmap1.Width; i++)
             {
-                konx[i] = 0;
+                konxX1[i] = 0;
                 for (int j = 0; j < objBitmap1.Height; j++)
                 {
                     if (mat1[i, j] == 0)
                         mat1[i, j] = 1;
                     else
                         mat1[i, j] = 0;
-                    konx[i] = konx[i] + mat1[i, j];
-                    ii[i] = i + 1;
+                    konxX1[i] = konxX1[i] + mat1[i, j];
+                    iiX1[i] = i + 1;
                 }
             }
-
-            seriesx.Points.DataBindXY(ii, konx);
+            seriesx.Points.DataBindXY(iiX1, konxX1);
             chart2.Series.Add(seriesx);
-
-            konx = new int[1000];
-            ii = new int[1000];
+            
             seriesx = new Series("Proyeksi-X Gambar2");
 
             for (int i = 0; i < objBitmap1.Width; i++)
             {
-                konx[i] = 0;
+                konxX2[i] = 0;
                 for (int j = 0; j < objBitmap1.Height; j++)
                 {
                     if (mat2[i, j] == 0)
                         mat2[i, j] = 1;
                     else
                         mat2[i, j] = 0;
-                    konx[i] = konx[i] + mat2[i, j];
-                    ii[i] = i + 1;
+                    konxX2[i] = konxX2[i] + mat2[i, j];
+                    iiX2[i] = i + 1;
                 }
             }
 
-            seriesx.Points.DataBindXY(ii, konx);
+            seriesx.Points.DataBindXY(iiX2, konxX2);
             chart4.Series.Add(seriesx);
         }
 
         private void button21_Click(object sender, EventArgs e)
         {
-            int[] konx = new int[1000];
-            int[] ii = new int[1000];
             var seriesx = new Series("Proyeksi-Y Gambar1");
 
             for (int i = 0; i < objBitmap1.Height; i++)
             {
-                konx[i] = 0;
+                konxY1[i] = 0;
                 for (int j = 0; j < objBitmap1.Width; j++)
                 {
                     if (mat1[i, j] == 0)
                         mat1[i, j] = 1;
                     else
                         mat1[i, j] = 0;
-                    konx[i] = konx[i] + mat1[i, j];
-                    ii[i] = i + 1;
+                    konxY1[i] = konxY1[i] + mat1[i, j];
+                    iiY1[i] = i + 1;
                 }
             }
 
-            seriesx.Points.DataBindXY(ii, konx);
+            seriesx.Points.DataBindXY(iiY1, konxY1);
             chart3.Series.Add(seriesx);
 
-            konx = new int[1000];
-            ii = new int[1000];
+            konxY2 = new int[1000];
+            iiY2 = new int[1000];
             seriesx = new Series("Proyeksi-Y Gambar2");
 
             for (int i = 0; i < objBitmap1.Height; i++)
             {
-                konx[i] = 0;
+                konxY2[i] = 0;
                 for (int j = 0; j < objBitmap1.Width; j++)
                 {
                     if (mat2[i, j] == 0)
                         mat2[i, j] = 1;
                     else
                         mat2[i, j] = 0;
-                    konx[i] = konx[i] + mat2[i, j];
-                    ii[i] = i + 1;
+                    konxY2[i] = konxY2[i] + mat2[i, j];
+                    iiY2[i] = i + 1;
                 }
             }
 
-            seriesx.Points.DataBindXY(ii, konx);
+            seriesx.Points.DataBindXY(iiY2, konxY2);
             chart5.Series.Add(seriesx);
         }
 
         private void button22_Click(object sender, EventArgs e)
         {
-            float dif = 0;
+            float difX = 0;
+            float difY = 0;
             richTextBox1.Text = "";
             for (int i = 0; i < 100; i++) {
-                for(int j = 0; j < 100; j++){
-                    if (mat1[i, j] != mat2[i, j])
-                        dif++;
-                }
+                difX += Math.Abs(konxX1[i] - konxX2[i]);
+                difY += Math.Abs(konxY1[i] - konxY2[i]);
             }
-            dif /= 100;
-            dif = 100 - dif;
-            richTextBox1.Text += "Kecocokan :\n"+dif+"%";
+            difX /= 100;
+            difY /= 100;
+            richTextBox1.Text += "Proses Matching :\n";
+            richTextBox1.Text += "Jarak Proyeksi X = " + difX + "\n";
+            richTextBox1.Text += "Jarak Proyeksi Y = " + difY + "\n";
+            richTextBox1.Text += "Jarak Total = " + (difY+difX) + "\n";
         }
 
         private void button13_Click(object sender, EventArgs e)
