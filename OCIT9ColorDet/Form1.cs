@@ -27,7 +27,7 @@ namespace OCIT9ColorDet
         int[] konxY2 = new int[1000];
         int[] iiX2 = new int[1000];
         int[] iiY2 = new int[1000];
-        int row = 0, col = 0;
+
         public Form1()
         {
             InitializeComponent();
@@ -113,6 +113,102 @@ namespace OCIT9ColorDet
                 }
             }
             return h;
+        }
+        private int[,] rgb2gray(Bitmap obj) {
+            int[,] mat = new int[obj.Width, obj.Height];
+
+            for (int x = 0; x < obj.Width; x++)
+                for (int y = 0; y < obj.Height; y++){
+                    Color w = obj.GetPixel(x, y);
+                    int wr = w.R;
+                    int wg = w.G;
+                    int wb = w.B;
+                    int xg = (int)((wr + wg + wb) / 3);
+                    mat[x, y] = xg;
+                }
+
+            return mat;
+        }
+        private Bitmap imshow(int[,] mat) {
+            Bitmap obj = new Bitmap(mat.GetLength(0), mat.GetLength(1));
+            for (int x = 0; x < obj.Width; x++)
+                for (int y = 0; y < obj.Height; y++)
+                {
+                    int xg = mat[x, y];
+                    Color new_c = Color.FromArgb(xg, xg, xg);
+                    obj.SetPixel(x, y, new_c);
+                }
+            return obj;
+        }
+        private int[,] im2bw(int[,] mat)
+        {
+            int[,] matr = new int[mat.GetLength(0), mat.GetLength(1)];
+            for (int x = 0; x < mat.GetLength(0); x++)
+                for (int y = 0; y < mat.GetLength(1); y++) 
+                    
+                    if (mat[x,y] > 127)
+                        matr[x, y] = 255;
+                    else
+                        matr[x, y] = 0;
+                    
+            return matr;
+        }
+        private int[,] ones(int x, int y) {
+            int[,] miniMat = new int[x, y];
+            for (int i = 0; i < x; i++)
+                for (int j = 0; j < y; j++)
+                    miniMat[i, j] = 255;
+            return miniMat;
+        }
+        private int[,] imrode(int[,] mat, int[,] s)
+        {
+            int[,] re = new int[mat.GetLength(0), mat.GetLength(1)];
+            int cpx = s.GetLength(0) / 2 + 1;
+            int cpy = s.GetLength(1) / 2 + 1;
+            
+            for (int i = s.GetLength(0); i < re.GetLength(0) - s.GetLength(0); i++)
+                for (int j = s.GetLength(1); j < re.GetLength(1) - s.GetLength(1); j++)
+                {
+                    if (mat[i, j] == 255)
+                    {
+                        re[i, j] = 255;
+                        int x = i - cpx;
+                        int y = j - cpy;
+
+                        for (int k = 0; k < s.GetLength(0); k++)
+                            for (int l = 0; l < s.GetLength(1); l++)
+                            {
+                                if (mat[x + k, y + l] != s[k, l])
+                                {
+                                    re[i, j] = 0;
+                                    s.GetLength(0);
+                                    break;
+                                }
+                            }
+                    }
+                }
+            return re;
+        }
+        private int[,] imdilate(int[,] mat, int[,] s) {
+            int[,] rd = new int[mat.GetLength(0), mat.GetLength(1)];
+            int cpx = s.GetLength(0) / 2 + 1;
+            int cpy = s.GetLength(1) / 2 + 1;
+            
+            for (int i = s.GetLength(0); i < rd.GetLength(0) - s.GetLength(0); i++)
+                for (int j = s.GetLength(1); j < rd.GetLength(1) - s.GetLength(1); j++)
+                {
+                    if (mat[i, j] == 255)
+                    {
+                        int x = i - cpx;
+                        int y = j - cpy;
+
+                        for (int k = 0; k < s.GetLength(0); k++)
+                            for (int l = 0; l < s.GetLength(1); l++)
+                                rd[x + k, y + l] = s[k, l];
+                    }
+
+                }
+            return rd;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -520,15 +616,24 @@ namespace OCIT9ColorDet
             richTextBox1.Text += "Jarak Total = " + (difY+difX) + "\n";
         }
 
+        private void button18_Click(object sender, EventArgs e)
+        {
+            int[,] X = rgb2gray(objBitmap);
+            int[,] x = im2bw(X);
+            objBitmap1 = new Bitmap(imshow(x));
+            pictureBox2.Image = objBitmap1;
+        }
         private void button13_Click(object sender, EventArgs e)
         {
             int[] konx = new int[1000];
             int[] ii = new int[1000];
-            var seriesx = new Series("Proyeksi-Horizontal");           
+            var seriesx = new Series("Proyeksi-Horizontal");
 
-            for (int i = 0; i < objBitmap1.Width; i++){
+            for (int i = 0; i < objBitmap1.Width; i++)
+            {
                 konx[i] = 0;
-                for (int j = 0; j < objBitmap1.Height; j++) {
+                for (int j = 0; j < objBitmap1.Height; j++)
+                {
                     if (mat1[i, j] == 0)
                         mat1[i, j] = 1;
                     else
@@ -540,6 +645,52 @@ namespace OCIT9ColorDet
 
             seriesx.Points.DataBindXY(ii, konx);
             chart2.Series.Add(seriesx);
+        }
+
+        private void button23_Click(object sender, EventArgs e)
+        {
+            objBitmap2 = new Bitmap(objBitmap1);
+            int[,] X = rgb2gray(objBitmap2);
+            int[,] x = im2bw(X);
+            int[,] s = ones(13, 13);
+            int[,] y = imrode(x, s);
+            objBitmap2 = new Bitmap(imshow(y));
+            pictureBox3.Image = objBitmap2;
+        }
+
+        private void button24_Click(object sender, EventArgs e)
+        {
+            objBitmap2 = new Bitmap(objBitmap1);
+            int[,] X = rgb2gray(objBitmap2);
+            int[,] x = im2bw(X);
+            int[,] s = ones(13, 13);
+            int[,] z = imdilate(x, s);
+            objBitmap2 = new Bitmap(imshow(z));
+            pictureBox4.Image = objBitmap2; 
+        }
+
+        private void button19_Click(object sender, EventArgs e)
+        {
+            objBitmap2 = new Bitmap(objBitmap1);
+            int[,] X = rgb2gray(objBitmap2);
+            int[,] x = im2bw(X);
+            int[,] s = ones(13, 13);
+            int[,] y = imrode(x, s);
+            int[,] z = imdilate(y, s);
+            objBitmap2 = new Bitmap(imshow(z));
+            pictureBox5.Image = objBitmap2;
+        }
+
+        private void button25_Click(object sender, EventArgs e)
+        {
+            objBitmap2 = new Bitmap(objBitmap1);
+            int[,] X = rgb2gray(objBitmap2);
+            int[,] x = im2bw(X);
+            int[,] s = ones(13, 13);
+            int[,] z = imdilate(x, s);
+            int[,] y = imrode(z, s);
+            objBitmap2 = new Bitmap(imshow(y));
+            pictureBox6.Image = objBitmap2;
         }
     }
 }
