@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend8 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend10 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea21 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend21 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea22 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend22 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea23 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend23 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea24 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend24 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea25 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend25 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -65,6 +65,8 @@
             this.button20 = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.button25 = new System.Windows.Forms.Button();
+            this.button19 = new System.Windows.Forms.Button();
             this.button24 = new System.Windows.Forms.Button();
             this.button23 = new System.Windows.Forms.Button();
             this.button18 = new System.Windows.Forms.Button();
@@ -86,9 +88,13 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.button19 = new System.Windows.Forms.Button();
-            this.button25 = new System.Windows.Forms.Button();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.button26 = new System.Windows.Forms.Button();
+            this.button27 = new System.Windows.Forms.Button();
+            this.button28 = new System.Windows.Forms.Button();
+            this.button29 = new System.Windows.Forms.Button();
+            this.button30 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -110,6 +116,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            this.tabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
@@ -150,6 +157,7 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Location = new System.Drawing.Point(13, 42);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -410,6 +418,26 @@
             this.tabPage6.Text = "Prak14";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
+            // button25
+            // 
+            this.button25.Location = new System.Drawing.Point(350, 21);
+            this.button25.Name = "button25";
+            this.button25.Size = new System.Drawing.Size(75, 23);
+            this.button25.TabIndex = 5;
+            this.button25.Text = "Closing";
+            this.button25.UseVisualStyleBackColor = true;
+            this.button25.Click += new System.EventHandler(this.button25_Click);
+            // 
+            // button19
+            // 
+            this.button19.Location = new System.Drawing.Point(268, 21);
+            this.button19.Name = "button19";
+            this.button19.Size = new System.Drawing.Size(75, 23);
+            this.button19.TabIndex = 4;
+            this.button19.Text = "Opening";
+            this.button19.UseVisualStyleBackColor = true;
+            this.button19.Click += new System.EventHandler(this.button19_Click);
+            // 
             // button24
             // 
             this.button24.Location = new System.Drawing.Point(186, 21);
@@ -482,10 +510,10 @@
             // 
             // chart1
             // 
-            chartArea6.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.chart1.Legends.Add(legend6);
+            chartArea21.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea21);
+            legend21.Name = "Legend1";
+            this.chart1.Legends.Add(legend21);
             this.chart1.Location = new System.Drawing.Point(679, 64);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(551, 128);
@@ -494,10 +522,10 @@
             // 
             // chart2
             // 
-            chartArea7.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea7);
-            legend7.Name = "Legend1";
-            this.chart2.Legends.Add(legend7);
+            chartArea22.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea22);
+            legend22.Name = "Legend1";
+            this.chart2.Legends.Add(legend22);
             this.chart2.Location = new System.Drawing.Point(679, 198);
             this.chart2.Name = "chart2";
             this.chart2.Size = new System.Drawing.Size(551, 124);
@@ -506,10 +534,10 @@
             // 
             // chart3
             // 
-            chartArea8.Name = "ChartArea1";
-            this.chart3.ChartAreas.Add(chartArea8);
-            legend8.Name = "Legend1";
-            this.chart3.Legends.Add(legend8);
+            chartArea23.Name = "ChartArea1";
+            this.chart3.ChartAreas.Add(chartArea23);
+            legend23.Name = "Legend1";
+            this.chart3.Legends.Add(legend23);
             this.chart3.Location = new System.Drawing.Point(679, 340);
             this.chart3.Name = "chart3";
             this.chart3.Size = new System.Drawing.Size(551, 118);
@@ -518,10 +546,10 @@
             // 
             // chart4
             // 
-            chartArea9.Name = "ChartArea1";
-            this.chart4.ChartAreas.Add(chartArea9);
-            legend9.Name = "Legend1";
-            this.chart4.Legends.Add(legend9);
+            chartArea24.Name = "ChartArea1";
+            this.chart4.ChartAreas.Add(chartArea24);
+            legend24.Name = "Legend1";
+            this.chart4.Legends.Add(legend24);
             this.chart4.Location = new System.Drawing.Point(679, 474);
             this.chart4.Name = "chart4";
             this.chart4.Size = new System.Drawing.Size(551, 118);
@@ -530,10 +558,10 @@
             // 
             // chart5
             // 
-            chartArea10.Name = "ChartArea1";
-            this.chart5.ChartAreas.Add(chartArea10);
-            legend10.Name = "Legend1";
-            this.chart5.Legends.Add(legend10);
+            chartArea25.Name = "ChartArea1";
+            this.chart5.ChartAreas.Add(chartArea25);
+            legend25.Name = "Legend1";
+            this.chart5.Legends.Add(legend25);
             this.chart5.Location = new System.Drawing.Point(679, 598);
             this.chart5.Name = "chart5";
             this.chart5.Size = new System.Drawing.Size(551, 118);
@@ -595,26 +623,6 @@
             this.pictureBox5.TabIndex = 4;
             this.pictureBox5.TabStop = false;
             // 
-            // button19
-            // 
-            this.button19.Location = new System.Drawing.Point(268, 21);
-            this.button19.Name = "button19";
-            this.button19.Size = new System.Drawing.Size(75, 23);
-            this.button19.TabIndex = 4;
-            this.button19.Text = "Opening";
-            this.button19.UseVisualStyleBackColor = true;
-            this.button19.Click += new System.EventHandler(this.button19_Click);
-            // 
-            // button25
-            // 
-            this.button25.Location = new System.Drawing.Point(350, 21);
-            this.button25.Name = "button25";
-            this.button25.Size = new System.Drawing.Size(75, 23);
-            this.button25.TabIndex = 5;
-            this.button25.Text = "Closing";
-            this.button25.UseVisualStyleBackColor = true;
-            this.button25.Click += new System.EventHandler(this.button25_Click);
-            // 
             // pictureBox6
             // 
             this.pictureBox6.Location = new System.Drawing.Point(235, 531);
@@ -623,6 +631,71 @@
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox6.TabIndex = 4;
             this.pictureBox6.TabStop = false;
+            // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.button30);
+            this.tabPage7.Controls.Add(this.button29);
+            this.tabPage7.Controls.Add(this.button28);
+            this.tabPage7.Controls.Add(this.button27);
+            this.tabPage7.Controls.Add(this.button26);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage7.Size = new System.Drawing.Size(654, 50);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "Prak15";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // button26
+            // 
+            this.button26.Location = new System.Drawing.Point(7, 21);
+            this.button26.Name = "button26";
+            this.button26.Size = new System.Drawing.Size(120, 23);
+            this.button26.TabIndex = 0;
+            this.button26.Text = "Global Thresholding";
+            this.button26.UseVisualStyleBackColor = true;
+            this.button26.Click += new System.EventHandler(this.button26_Click);
+            // 
+            // button27
+            // 
+            this.button27.Location = new System.Drawing.Point(133, 21);
+            this.button27.Name = "button27";
+            this.button27.Size = new System.Drawing.Size(75, 23);
+            this.button27.TabIndex = 0;
+            this.button27.Text = "Gray";
+            this.button27.UseVisualStyleBackColor = true;
+            this.button27.Click += new System.EventHandler(this.button27_Click);
+            // 
+            // button28
+            // 
+            this.button28.Location = new System.Drawing.Point(214, 21);
+            this.button28.Name = "button28";
+            this.button28.Size = new System.Drawing.Size(88, 23);
+            this.button28.TabIndex = 0;
+            this.button28.Text = "Integral sum 2";
+            this.button28.UseVisualStyleBackColor = true;
+            this.button28.Click += new System.EventHandler(this.button28_Click);
+            // 
+            // button29
+            // 
+            this.button29.Location = new System.Drawing.Point(309, 21);
+            this.button29.Name = "button29";
+            this.button29.Size = new System.Drawing.Size(124, 23);
+            this.button29.TabIndex = 1;
+            this.button29.Text = "Adaptive Thresholding";
+            this.button29.UseVisualStyleBackColor = true;
+            this.button29.Click += new System.EventHandler(this.button29_Click);
+            // 
+            // button30
+            // 
+            this.button30.Location = new System.Drawing.Point(440, 21);
+            this.button30.Name = "button30";
+            this.button30.Size = new System.Drawing.Size(75, 23);
+            this.button30.TabIndex = 2;
+            this.button30.Text = "Finale";
+            this.button30.UseVisualStyleBackColor = true;
+            this.button30.Click += new System.EventHandler(this.button30_Click);
             // 
             // Form1
             // 
@@ -669,6 +742,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            this.tabPage7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -726,6 +800,12 @@
         private System.Windows.Forms.Button button25;
         private System.Windows.Forms.Button button19;
         private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.Button button30;
+        private System.Windows.Forms.Button button29;
+        private System.Windows.Forms.Button button28;
+        private System.Windows.Forms.Button button27;
+        private System.Windows.Forms.Button button26;
     }
 }
 

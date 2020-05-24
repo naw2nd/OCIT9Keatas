@@ -16,6 +16,7 @@ namespace OCIT9ColorDet
         Bitmap objBitmap1;
         Bitmap objBitmap2;
         Bitmap objBitmap3;
+
         float[][] h = new float[4][];
         int[,] mat1 = new int[1000, 1000];
         int[,] mat2 = new int[1000, 1000];
@@ -27,6 +28,10 @@ namespace OCIT9ColorDet
         int[] konxY2 = new int[1000];
         int[] iiX2 = new int[1000];
         int[] iiY2 = new int[1000];
+
+        Bitmap gray;
+        int[,] graynya, sumimage, thesum, mean, thresholdnya, gray2, sumimage2, output;
+        int s = 35, t = 28;
 
         public Form1()
         {
@@ -623,6 +628,7 @@ namespace OCIT9ColorDet
             objBitmap1 = new Bitmap(imshow(x));
             pictureBox2.Image = objBitmap1;
         }
+
         private void button13_Click(object sender, EventArgs e)
         {
             int[] konx = new int[1000];
@@ -692,5 +698,123 @@ namespace OCIT9ColorDet
             objBitmap2 = new Bitmap(imshow(y));
             pictureBox6.Image = objBitmap2;
         }
+
+        private void button26_Click(object sender, EventArgs e)
+        {
+            objBitmap1 = new Bitmap(objBitmap);
+            for(int x = 0; x < objBitmap1.Width; x++)
+                for(int y = 0; y < objBitmap1.Height; y++)
+                {
+                    Color w = objBitmap1.GetPixel(x, y);
+                    int wr = w.R; int wg = w.G; int wb = w.B;
+                    int xg = (int)((wr + wg + wb) / 3);
+                    if (xg > 127)
+                        xg = 255;
+                    else
+                        xg = 0;
+                    Color new_c = Color.FromArgb(xg, xg, xg);
+                    objBitmap1.SetPixel(x, y, new_c);
+                }
+            pictureBox3.Image = objBitmap1;
+        }
+
+        private void button27_Click(object sender, EventArgs e)
+        {
+            gray = new Bitmap(objBitmap);
+            gray2 = new int[gray.Width, gray.Height];
+            sumimage2 = new int[gray.Width, gray.Height];
+            output = new int[gray.Width, gray.Height];
+
+            graynya = new int[gray.Width + 1, gray.Height + 1];
+            sumimage = new int[gray.Width + 1, gray.Height + 1];
+            thesum = new int[gray.Width + 1, gray.Height + 1];
+            mean = new int[gray.Width + 1, gray.Height + 1];
+            thresholdnya = new int[gray.Width + 1, gray.Height + 1];
+            for (int x = 0; x < gray.Width; x++)
+                for (int y = 0; y < gray.Height; y++)
+                {
+                    Color w = gray.GetPixel(x, y);
+                    int a = w.A;
+                    int r = w.R;
+                    int g = w.G;
+                    int b = w.B;
+                    int avg = ((r + g + b) / 3);
+                    graynya[x + 1, y + 1] = avg;
+                    sumimage[x + 1, y + 1] = avg;
+                    gray2[x, y] = avg;
+                    gray.SetPixel(x, y, Color.FromArgb(a, avg, avg, avg));
+                }
+            pictureBox4.Image = gray;
+        }
+
+        private void button28_Click(object sender, EventArgs e)
+        {
+            int sum;
+            for (int x = 0; x < gray.Width; x++)
+            {
+                sum = 0;
+                for (int y = 0; y < gray.Height; y++)
+                {
+                    sum = sum + gray2[x, y];
+                    if (x == 0)
+                    {
+                        sumimage2[x, y] = sum;
+                    }
+                    else
+                    {
+
+                        sumimage2[x, y] = sumimage2[x - 1, y] + sum;
+                    }
+
+                }
+            }
+        }
+
+        private void button29_Click(object sender, EventArgs e)
+        {
+            int x1, x2, y1, y2, count;
+            int sum;
+            for (int x = s / 2 + 1; x < gray.Width - s / 2; x++)
+            {
+
+                for (int y = s / 2 + 1; y < gray.Height - s / 2; y++)
+                {
+                    x1 = x - s / 2;
+                    x2 = x + s / 2;
+                    y1 = y - s / 2;
+                    y2 = y + s / 2;
+                    count = (x2 - x1) * (y2 - y1);
+                    sum = sumimage2[x2, y2] - sumimage2[x2, y1 - 1] - sumimage2[x1 - 1, y2] + sumimage2[x1 - 1, y1 - 1];
+                    if (gray2[x, y] * count <= (sum * (100 - t) / 100))
+                    {
+                        output[x, y] = 0;
+                    }
+                    else
+                    {
+                        output[x, y] = 255;
+                    }
+
+                }
+            }
+        }
+
+        private void button30_Click(object sender, EventArgs e)
+        {
+            for (int x = 0; x < gray.Width; x++)
+                for (int y = 0; y < gray.Height; y++)
+                {
+                    if (x < s / 2 + 1 || x > (gray.Width - s / 2 - 1) || y < s / 2 + 1 || y > (gray.Height - s / 2 - 1))
+                    {
+                        gray.SetPixel(x, y, Color.FromArgb(255, 255, 255));
+                    }
+                    else
+                    {
+                        gray.SetPixel(x, y, Color.FromArgb(output[x, y], output[x, y], output[x, y]));
+                    }
+
+                }
+            pictureBox4.Image = gray;
+        }
+
     }
 }
